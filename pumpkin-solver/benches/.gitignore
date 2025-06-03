@@ -1,0 +1,7 @@
+experiments/
+results/
+results_local/
+*.pkl
+*.pgf
+__pycache__/
+datasets/

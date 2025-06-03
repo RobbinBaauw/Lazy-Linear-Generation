@@ -1,0 +1,38 @@
+experiment_dir = "./results"
+
+[slurm]
+experiment_name = "llg_benches"
+partition = "compute"
+account = "research"
+
+[resource_limits]
+time_limit_minutes = 65
+cpus = 1
+mem_per_cpu = 8192
+batch_size = 1
+array_size = 1001
+
+[program]
+[program.resolution]
+binary = "./llg_benchmarks"
+arguments = ["--log-to-files", "--time-limit", "3600000"]
+
+[program.llg]
+binary = "./llg_benchmarks"
+arguments = ["--use-llg", "--log-to-files", "--time-limit", "3600000"]
+
+[program.llg-skip-nogood-learning]
+binary = "./llg_benchmarks"
+arguments = [
+    "--llg-skip-nogood-learning",
+    "--use-llg", "--log-to-files", "--time-limit", "3600000"]
+
+[program.llg-clause-to-linear]
+binary = "./llg_benchmarks"
+arguments = [
+    "--llg-clause-to-inequality",
+    "--use-llg", "--log-to-files", "--time-limit", "3600000"]
+
+[input]
+[input.paper-set]
+path = "./datasets/paper-set/**/*.fzn"
